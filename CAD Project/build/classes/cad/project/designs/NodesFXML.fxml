@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="root" prefHeight="500.0" prefWidth="125.0" stylesheets="@../css/nodes%20sidebar.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cad.project.controllers.NodesFXMLController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="125.0" spacing="30.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="BOTTOM" onMouseClicked="#drawResistor" prefHeight="35.0" prefWidth="125.0" styleClass="node" text="Resistor">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#drawResistor" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Resistor_Symbol.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="BOTTOM" onMouseClicked="#drawCurrentResource" prefHeight="35.0" prefWidth="125.0" styleClass="node" text="Current source">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Current_Source.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="BOTTOM" onMouseClicked="#drawVoltageResource" prefHeight="35.0" prefWidth="125.0" styleClass="node" text="Voltage source">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Voltage_Source.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,14 @@
+#root{
+    -fx-background-color: #874521;
+}
+.node{
+    /*-fx-border-radius: 10%;*/
+    /*-fx-border-style: solid ;*/
+    -fx-cursor:  hand;
+}
+.node:hover{
+    /*-fx-background-color: #125478;*/
+    -fx-scale-x:1.1;
+    -fx-scale-y:1.1;
+    /*-fx-translate-x:10;*/
+}
