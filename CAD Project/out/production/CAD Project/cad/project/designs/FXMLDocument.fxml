@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="551.0" prefWidth="940.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="cad.project.controllers.FXMLDocumentController">
+    <children>
+      <HBox alignment="CENTER" prefWidth="940.0" spacing="60.0">
+         <children>
+            <JFXButton fx:id="graphBtn" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="110.0" text="getGraph" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <HBox spacing="20.0">
+               <children>
+                  <JFXButton fx:id="ABtn" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="110.0" text="A" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="BBtn" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="110.0" text="B" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="CBtn" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="110.0" text="C" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <JFXButton fx:id="solveBtn" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" prefHeight="35.0" prefWidth="110.0" ripplerFill="#00b909" text="Solve" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="deleteBtn" alignment="CENTER" cancelButton="true" contentDisplay="CENTER" prefHeight="35.0" prefWidth="110.0" ripplerFill="#ff0202" text="X" textAlignment="CENTER" textFill="#ea0000">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </HBox>
+      <Pane fx:id="skitchPane" layoutX="20.0" layoutY="57.0" prefHeight="475.0" prefWidth="760.0" />
+      <Pane fx:id="nodesPane" layoutX="794.0" layoutY="57.0" prefHeight="475.0" prefWidth="125.0" />
+    </children>
+</AnchorPane>
