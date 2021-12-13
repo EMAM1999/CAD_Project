@@ -1,0 +1,19 @@
+#root{
+    -fx-background-color: #666666;
+    -fx-min-height: 800px
+}
+#controls_niv{
+    -fx-background-color: #125478;
+    -fx-min-width: 1550px; 
+    -fx-min-height: 70px
+}
+#nodes_sidebar{
+    -fx-background-color: #874521;
+    -fx-min-width: 140px;
+    -fx-min-height: 800px
+}
+#skitchPane{
+    -fx-background-color: #defca9;
+    -fx-min-width: 1400px;
+    -fx-min-height: 800px;
+}
