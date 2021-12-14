@@ -48,7 +48,11 @@ public class CADProject extends Application {
 
 
           public static void initMatrixStage(String title , Matrix m) {
-                    initMatrixStage(title , m.getArrayCopy());
+                    if ( m == null ) {
+                              System.err.println("The matrix m is null");
+                    } else {
+                              initMatrixStage(title , m.getArrayCopy());
+                    }
           }
 
 

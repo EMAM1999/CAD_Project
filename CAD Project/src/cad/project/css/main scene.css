@@ -17,3 +17,16 @@
     -fx-min-width: 1400px;
     -fx-min-height: 800px;
 }
+.Button:hover{
+    -fx-cursor:hand;
+    -fx-scale-x:1.2;
+    -fx-scale-Y:1.2;
+}
+.MatrixButton{
+    -fx-disable:true;
+}
+.Control:hover{
+    -fx-cursor:hand;
+    -fx-scale-x:1.5;
+    -fx-scale-y:1.5;
+}

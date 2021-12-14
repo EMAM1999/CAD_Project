@@ -5,6 +5,7 @@
  */
 package cad.project.controllers;
 
+import cad.project.files.Data;
 import cad.project.structures.drawings.CurrentSourceDraw;
 import cad.project.structures.drawings.ElementDraw;
 import cad.project.structures.drawings.PointDraw;
@@ -12,8 +13,10 @@ import cad.project.structures.drawings.ResistorDraw;
 import cad.project.structures.drawings.VoltageSourceDraw;
 import cad.project.structures.graph.Branch;
 import cad.project.structures.graph.Circuit;
+import cad.project.structures.graph.Main;
 import cad.project.structures.graph.Node;
 import com.jfoenix.controls.JFXButton;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -29,6 +32,7 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
+import javafx.stage.*;
 import javax.swing.JOptionPane;
 //solve() -> solve()
 
@@ -43,12 +47,14 @@ public class FXMLDocumentController implements Initializable {
 
           @FXML
           private JFXButton ABtn;
-
           @FXML
           private JFXButton BBtn;
-
           @FXML
           private JFXButton CBtn;
+          @FXML
+          private JFXButton JbBtn;
+          @FXML
+          private JFXButton VbBtn;
 
           @FXML
           private JFXButton solveBtn;
@@ -95,11 +101,19 @@ public class FXMLDocumentController implements Initializable {
 
 
           @FXML
-          private void reset(MouseEvent event) {
-                    int c = JOptionPane.showConfirmDialog(null , "Are you sure you want to delete the drawing !?");
+          private void reset(MouseEvent event) throws IOException {
+                    int c = JOptionPane.showConfirmDialog(null , "Do you want to save the drawing !?");
                     System.out.println(c);
-                    if ( c == 0 ) {
-                              skitch.deleteAllElements();
+                    switch ( c ) {
+                              default: break;
+                              case JOptionPane.YES_OPTION:
+                                        save();
+                              case JOptionPane.NO_OPTION:
+                                        skitch.deleteAllElements();
+                                        BBtn.setDisable(true);
+                                        CBtn.setDisable(true);
+                                        JbBtn.setDisable(true);
+                                        VbBtn.setDisable(true);
                     }
           }
 
@@ -154,6 +168,17 @@ public class FXMLDocumentController implements Initializable {
                               }
 
 
+                              private void setCurrentsVoltageValuesOnTheWires() {
+                                        List<ElementDraw> elements = skitch.getDrawingsElements();
+                                        for ( ElementDraw ele : elements ) {
+                                                  if ( ele instanceof ResistorDraw ) {
+
+                                                  }
+
+                                        }
+                              }
+
+
                               private void solve() {
                                         wires = new ArrayList<>();
                                         points = new HashMap<>();
@@ -163,41 +188,16 @@ public class FXMLDocumentController implements Initializable {
                                         filterVoltageSources();
                                         circuit = Circuit.getInstance(wires);
 
+//                                        Print the matrices
                                         System.out.println("Jb");
                                         double[][] m = circuit.getGraph().getJb().getArrayCopy();
-                                        print(circuit.getGraph() , m);
+                                        Main.print(circuit.getGraph() , m);
                                         System.out.println("Vb");
                                         m = circuit.getGraph().getVb().getArrayCopy();
-                                        print(circuit.getGraph().getBranchs() , circuit.getGraph().getLinks() , m);
+                                        Main.print(circuit.getGraph().getBranchs() , circuit.getGraph().getLinks() , m);
 
 //                                        Set The values on the drawn
-                              }
-
-
-                              public void print(List<Branch> branchs , List<Branch> links , double[][] num) {
-                                        for ( int i = 0 ; i < branchs.size() ; i++ ) {
-                                                  String b = branchs.get(i).getID();
-                                                  String sp = branchs.get(i).getStartPoint().getID();
-                                                  String ep = branchs.get(i).getEndPoint().getID();
-                                                  for ( int j = 0 ; j < num[i].length ; j++ ) {
-                                                            System.out.printf("%s (%s >> %s)\t%.3f " , b , sp , ep , num[i][j]);
-                                                  }
-                                                  System.out.println("");
-                                        }
-                                        for ( int i = 0 ; i < links.size() ; i++ ) {
-                                                  String b = links.get(i).getID();
-                                                  String sp = links.get(i).getStartPoint().getID();
-                                                  String ep = links.get(i).getEndPoint().getID();
-                                                  for ( int j = 0 ; j < num[i + branchs.size()].length ; j++ ) {
-                                                            System.out.printf("%s (%s >> %s)\t%.3f " , b , sp , ep , num[i + branchs.size()][j]);
-                                                  }
-                                                  System.out.println("");
-                                        }
-                              }
-
-
-                              private void print(Circuit.Graph graph , double[][] m) {
-                                        print(graph.getBranchs() , graph.getLinks() , m);
+                                        setCurrentsVoltageValuesOnTheWires();
                               }
 
 
@@ -284,35 +284,65 @@ public class FXMLDocumentController implements Initializable {
                                         });
                               }
                     }.solve();
-//                    System.out.println(CADProject.circuit.getGraph().getTree());
-//                    System.out.println(CADProject.circuit.getGraph().getCoTree());
-//                    print(CADProject.circuit.getGraph().getA());
-//                    print(CADProject.circuit.getGraph().getAt());
-//                    print(CADProject.circuit.getGraph().getAl());
-//                    print(CADProject.circuit.getGraph().getB());
-//                    print(CADProject.circuit.getGraph().getBt());
-//                    print(CADProject.circuit.getGraph().getBl());
-//                    print(CADProject.circuit.getGraph().getC());
-//                    print(CADProject.circuit.getGraph().getCl());
-//                    print(CADProject.circuit.getGraph().getCt());
+                    ABtn.setDisable(false);
+                    BBtn.setDisable(false);
+                    CBtn.setDisable(false);
+                    JbBtn.setDisable(false);
+                    VbBtn.setDisable(false);
           }
 
 
           @FXML
-          void getA(ActionEvent event) {
+          private void getA(ActionEvent event) {
                     CADProject.initMatrixStage("A" , circuit.getGraph().getA());
           }
 
 
           @FXML
-          void getB(ActionEvent event) {
+          private void getB(ActionEvent event) {
                     CADProject.initMatrixStage("Tie-Set" , circuit.getGraph().getB());
           }
 
 
           @FXML
-          void getC(ActionEvent event) {
+          private void getC(ActionEvent event) {
                     CADProject.initMatrixStage("Cut-Set" , circuit.getGraph().getC());
+          }
+
+
+          @FXML
+          private void getJb(ActionEvent event) {
+                    CADProject.initMatrixStage("Current in branches" , circuit.getGraph().getJb());
+          }
+
+
+          @FXML
+          private void getVb(ActionEvent event) {
+                    CADProject.initMatrixStage("Voltage in branches" , circuit.getGraph().getVb());
+          }
+
+
+          @FXML
+          private void externalFile(ActionEvent event) throws ClassNotFoundException , IOException {
+                    FileChooser chooser = new FileChooser();
+                    File f = chooser.showOpenDialog(CADProject.stage);
+                    List<ElementDraw> elements = Data.read(f);
+                    elements.forEach((ele) -> {
+                              skitch.addElement(ele);
+                    });
+          }
+
+
+          @FXML
+          void save(ActionEvent event) throws IOException {
+                    save();
+          }
+
+
+          private void save() throws IOException {
+                    FileChooser chooser = new FileChooser();
+                    File f = chooser.showSaveDialog(CADProject.stage);
+                    Data.write(f , skitch.getDrawingsElements());
           }
 
 

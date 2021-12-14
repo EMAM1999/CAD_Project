@@ -6,6 +6,7 @@
 package cad.project.structures.drawings;
 
 import cad.project.controllers.Skitch;
+import java.io.Serializable;
 import javafx.scene.*;
 import javafx.scene.input.*;
 import javafx.scene.shape.*;
@@ -14,7 +15,7 @@ import javafx.scene.shape.*;
 
  @author EMAM
  */
-public abstract class ElementDraw extends Group {
+public abstract class ElementDraw extends Group implements Serializable {
 
           public static final int UV = 1; // up vertical
           public static final int RH = 2; // right herozintal

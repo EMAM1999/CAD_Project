@@ -16,7 +16,7 @@ public class Main {
           public static void main(String[] args) {
                     Node n1 = new Node("1");
                     Node n2 = new Node("2");
-                    Node n3 = new  Node("3");
+                    Node n3 = new Node("3");
 
                     Branch a = new Branch("a" , n1 , n2 , 10 , 0 , 0);
                     Branch b = new Branch("b" , n2 , n3 , 5 , 0 , 0);
@@ -68,7 +68,7 @@ public class Main {
                     System.out.println("Vb");
                     m = circuit.getGraph().getVb().getArrayCopy();
                     print(circuit.getGraph().getBranchs() , circuit.getGraph().getLinks() , m);
-                    
+
           }
 
 
@@ -94,7 +94,7 @@ public class Main {
           }
 
 
-          private static void print(Circuit.Graph graph , double[][] m) {
+          public static void print(Circuit.Graph graph , double[][] m) {
                     print(graph.getBranchs() , graph.getLinks() , m);
           }
 
